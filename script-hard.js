@@ -32,3 +32,6 @@ Saturday
 
 Sunday`);
 }
+
+let namePerson = "Александр"; // или другое значение
+console.log(namePerson === "Артем" ? "директор" : (namePerson === "Александр" ? "преподаватель" : "студент"));
