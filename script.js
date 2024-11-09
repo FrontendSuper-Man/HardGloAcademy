@@ -1,5 +1,5 @@
-// let lang = 'ru'
-let lang = 'eng'
+const lang = 'ru'
+// const lang = 'eng'
 
 if (lang === 'ru') {
 	console.log(`
@@ -33,5 +33,6 @@ Saturday
 Sunday`);
 }
 
-let namePerson = "Александр"; // или другое значение
+const namePerson = "Александр";
+// const namePerson = "Артем";
 console.log(namePerson === "Артем" ? "директор" : (namePerson === "Александр" ? "преподаватель" : "студент"));
