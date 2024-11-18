@@ -1,38 +1,63 @@
-const lang = 'ru'
-// const lang = 'eng'
+function startGame() {
+	const randomNumber = Math.floor(Math.random() * 100) + 1;
+	const maxAttempts = 10;
+	alert("Игра началась! Угадайте число от 1 до 100. У вас есть 10 попыток.");
 
-if (lang === 'ru') {
-	console.log(`
-Понедельник
+	function game(attemptsLeft) {
+		const userInput = prompt(`Угадайте число от 1 до 100 (осталось попыток: ${attemptsLeft}):`);
 
-Вторник
+		if (userInput === null) {
+			alert("Игра окончена. Спасибо за игру!");
+			return;
+		}
 
-Среда
+		const userNumber = Number(userInput);
 
-Четверг
+		if (isNaN(userNumber)) {
+			alert("Введи число!");
+			return game(attemptsLeft);
+		}
 
-Пятница
+		if (userNumber < 1 || userNumber > 100) {
+			alert("Число должно быть от 1 до 100.");
+			return game(attemptsLeft);
+		}
 
-Суббота
+		if (userNumber > randomNumber) {
+			if (attemptsLeft - 1 === 0) {
+				if (confirm("Попытки закончились, хотите сыграть еще?")) {
+					return startGame();
+				} else {
+					alert("Игра окончена. Спасибо за игру!");
+					return;
+				}
+			}
+			alert(`Загаданное число меньше, осталось попыток: ${attemptsLeft - 1}`);
+			return game(attemptsLeft - 1);
+		}
 
-Воскресенье`);
-} else if (lang === 'eng') {
-	console.log(`
-Monday
+		if (userNumber < randomNumber) {
+			if (attemptsLeft - 1 === 0) {
+				if (confirm("Попытки закончились, хотите сыграть еще?")) {
+					return startGame();
+				} else {
+					alert("Игра окончена. Спасибо за игру!");
+					return;
+				}
+			}
+			alert(`Загаданное число больше, осталось попыток: ${attemptsLeft - 1}`);
+			return game(attemptsLeft - 1);
+		}
 
-Tuesday
-
-Wednesday
-
-Thursday
-
-Friday
-
-Saturday
-
-Sunday`);
+		if (userNumber === randomNumber) {
+			if (confirm(`Поздравляю, Вы угадали!!! Это было число: ${randomNumber}. Хотите сыграть еще?`)) {
+				return startGame();
+			} else {
+				alert("Спасибо за игру!");
+				return;
+			}
+		}
+	}
+	game(maxAttempts);
 }
-
-const namePerson = "Александр";
-// const namePerson = "Артем";
-console.log(namePerson === "Артем" ? "директор" : (namePerson === "Александр" ? "преподаватель" : "студент"));
+startGame();
